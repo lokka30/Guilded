@@ -6,10 +6,11 @@
 
     <groupId>io.github.lokka30</groupId>
     <artifactId>Guilded</artifactId>
-    <version>1.0.0-ALPHA</version>
+    <version>1.0.1-ALPHA</version>
 
     <name>Guilded</name>
-    <description>A bungee/bukkit community system</description>
+    <description>A bungee/bukkit plugin to bring your community together with a guild, party and friends system
+    </description>
 
     <packaging>jar</packaging>
     <properties>

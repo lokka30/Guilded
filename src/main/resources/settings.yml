@@ -1,0 +1,7 @@
+# Guilded | settings.yml
+
+# Should the plugin check for updates after it has enabled?
+use-update-checker: true
+
+# You shouldn't touch this unless you are updating the file to its respective version.
+file-version: 1

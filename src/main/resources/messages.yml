@@ -1,0 +1,7 @@
+# Guilded | messages.yml
+
+# What should the %prefix% placeholder show?
+prefix: '&a&lGuilded: &7'
+
+# You shouldn't touch this unless you are updating the file to its respective version.
+file-version: 1

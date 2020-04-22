@@ -1,2 +1,16 @@
 1.0.0-ALPHA:
 - Got the plugin to load on both bungee and bukkit successfuly
+
+1.0.1-ALPHA:
+- Added 'api-version' to plugin.yml
+- Added more to plugin.yml
+- Added planned subcommands to each command class
+- Finished base structure of the classes under Commands, Listeners and Managers
+- Completed Utils class
+- Added update checker (will not run until resource ID is updated)
+- Added LogLevel enum
+- Finished the GuildedBukkit class
+- Added messages to the commands informing the user of the command's incompletion
+- Added files 'settings.yml', 'messages.yml', 'data.json'
+ - Added 'file-version'
+ - Added 'prefix' to 'settings.yml'

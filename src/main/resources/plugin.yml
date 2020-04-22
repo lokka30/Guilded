@@ -2,7 +2,30 @@ name: Guilded
 main: io.github.lokka30.guilded.bukkit.GuildedBukkit
 version: ${project.version}
 description: ${project.description}
+api-version: '1.15'
+website: 'https://discord.gg/69NWW6A'
+prefix: 'Guilded (Bukkit)'
+load: POSTWORLD
 authors:
   - lokka30 (Guilded author)
   - JavaFactory (LightningStorage)
   - bStats team (bStats)
+
+commands:
+  guilds:
+    description: 'Create or manage your guild.'
+    aliases: [guild]
+    usage: /<command>
+  friends:
+    description: 'View or manage your friends list.'
+    aliases: [friend]
+    usage: /<command>
+  parties:
+    description: 'Create or manage your party.'
+    aliases: [partys, party]
+    usage: /<command>
+  guilded:
+    description: 'View generic plugin information.'
+    usage: /<command>
+
+permissions: []

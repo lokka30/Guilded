@@ -2,6 +2,8 @@ name: Guilded
 main: io.github.lokka30.guilded.bungee.GuildedBungee
 version: ${project.version}
 description: ${project.description}
+website: 'https://discord.gg/69NWW6A'
+prefix: 'Guilded (Bungee)'
 authors:
   - lokka30 (Guilded author)
   - JavaFactory (LightningStorage)
