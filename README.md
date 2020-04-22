@@ -1,7 +1,21 @@
 # Guilded
-A bungee/bukkit plugin to bring your community together with a guild, party and friends system
+A bungee/bukkit plugin to bring your community together.
 
-## Links
+###Features:
+- One jar that works on both BungeeCord and Bukkit servers
+- Guilds, with chat and user-defined names
+- Parties, with chat and leader teleportation
+- Friends list, with friend info available
+- Amazing degree of configurability
+ - Lots of options, so users who like to tinker can make the plugin fit their server
+ - Lots of documentation on the wiki, so confused users can know how things work
+- Well-built plugin, unlikely to fail
+- Multiversion support, from 1.7.10 to 1.15.2
+  - It probably works on older versions too!
+- Familiar commands so your users can jump on board without much hassle
+- Built in 2020 for the servers of today
+
+### Links
 Spigot Page: -Not Available-
 
 Support Discord: [-Link-](https://discord.gg/69NWW6A)
