@@ -1,0 +1,8 @@
+name: Guilded
+main: io.github.lokka30.guilded.bukkit.GuildedBukkit
+version: ${project.version}
+description: ${project.description}
+authors:
+  - lokka30 (Guilded author)
+  - JavaFactory (LightningStorage)
+  - bStats team (bStats)
