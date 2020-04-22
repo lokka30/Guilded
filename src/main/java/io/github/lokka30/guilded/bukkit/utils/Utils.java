@@ -29,6 +29,11 @@ public class Utils {
         return colorize(msg.replaceFirst("%prefix%", prefix));
     }
 
+    //This will use the prefix method but also retrieve a message and have its default. shorter way to get messages and prefix them
+    public String prefixFromMessages(final String path, final String def) {
+        return prefix(instance.getMessages().get(path, def));
+    }
+
     //This will log a message to the console with such log level
     public void log(final LogLevel logLevel, String msg) {
         final Logger logger = Bukkit.getLogger();
@@ -62,7 +67,7 @@ public class Utils {
     //This is the latest messages file version.
     //If the current messages file version installed by the user does not match this, then such is reported to the console.
     public int getLatestMessagesFileVersion() {
-        return 1;
+        return 2;
     }
 
     //This is the latest data file version.

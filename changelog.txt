@@ -18,3 +18,9 @@
 1.0.2-ALPHA:
 - Added 'Objects.requireNonNull' to command registration
 - Added most of the methods required in FriendsManager
+
+1.0.3-ALPHA:
+- Completed '/friends add', '/friends remove', '/friends requesters'
+- Added a few more methods to 'FriendsManager'
+- Added content to 'messages.yml'
+- Increased 'messages.yml' version

@@ -28,4 +28,13 @@ commands:
     description: 'View generic plugin information.'
     usage: /<command>
 
-permissions: []
+permissions:
+  guilded.guilds:
+    description: Access to /guilds
+    default: true
+  guilded.friends:
+    description: Access to /friends
+    default: true
+  guilded.parties:
+    description: Access to /parties
+    default: true
