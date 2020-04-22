@@ -10,13 +10,13 @@ Guilded isn't released on Spigot, but you can access development builds on the [
 - Parties, with chat and leader teleportation
 - Friends list, with friend info available
 - Amazing degree of configurability
- - Lots of options, so users who like to tinker can make the plugin fit their server
- - Lots of documentation on the wiki, so confused users can know how things work
+  - Lots of options, so users who like to tinker can make the plugin fit their server
+  - Lots of documentation on the wiki, so confused users can know how things work
 - Well-built plugin
- - Unlikely to fail
- - Has a lightweight profile
+  - Unlikely to fail
+  - Has a lightweight profile
 - Multiversion support, from 1.7.10 to 1.15.2
-  - It probably works on older versions too!
+   - It probably works on older versions too!
 - Familiar commands so your users can jump on board without much hassle
 - Built in 2020 for the servers of today
 
