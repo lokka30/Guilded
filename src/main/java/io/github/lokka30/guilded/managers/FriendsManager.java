@@ -40,15 +40,12 @@ public class FriendsManager {
         instance.getData().set(path, friendRequests);
     }
 
-    public void acceptFriendRequest(final String senderUUID, final String accepterUUID) {
-        //senderUUID = the player that sent the friend request
-        //accepterUUID = the player that accepted the friend request
-
+    public void acceptFriendRequest(final String requesterUUID, final String accepterUUID) {
         //Add the friends together
-        addFriend(senderUUID, accepterUUID);
+        addFriend(requesterUUID, accepterUUID);
 
         //Remove the friend request as it is no longer required
-        cancelFriendRequest(senderUUID, accepterUUID);
+        cancelFriendRequest(requesterUUID, accepterUUID);
     }
 
     public void startIgnoringFriendRequests(final String targetUUID, final String playerUUID) {
@@ -78,19 +75,19 @@ public class FriendsManager {
         return instance.getData().get("players." + targetUUID + ".friend-requests-ignored", new ArrayList<>()).contains(requesterUUID);
     }
 
-    public List<String> getFriendsList(final String uuid) {
-        return instance.getData().get("players." + uuid + ".friends", new ArrayList<>());
+    public List<String> getFriendsList(final String playerUUID) {
+        return instance.getData().get("players." + playerUUID + ".friends", new ArrayList<>());
     }
 
-    public void setFriendAddedTime(final String uuid1, final String uuid2) {
-        //uuid2 just added uuid1 as a friend.
+    public void setFriendAddedTime(final String targetUUID, final String playerUUID) {
+        //playerUUID just added targetUUID as a friend.
         Date date = new Date(System.currentTimeMillis());
-        instance.getData().set("players." + uuid2 + ".friends-history." + uuid1, date);
+        instance.getData().set("players." + playerUUID + ".friends-history." + targetUUID, date);
     }
 
-    public String getFriendAddedTime(final String uuid1, final String uuid2) {
-        //uuid2 wants to know when uuid1 was added to their friends list.
-        return instance.getData().get("players." + uuid2 + ".friends-history." + uuid1, "Unknown");
+    public String getFriendAddedTime(final String targetUUID, final String playerUUID) {
+        //playerUUID wants to know when targetUUID was added to their friends list.
+        return instance.getData().get("players." + playerUUID + ".friends-history." + targetUUID, "Unknown");
     }
 
     public String getFriendServer(final ProxiedPlayer player) {
@@ -103,34 +100,34 @@ public class FriendsManager {
         return player.getWorld().getName();
     }
 
-    public void setCanReceiveRequests(final String uuid, final boolean canReceiveRequests) {
-        instance.getData().set("players." + uuid + ".options.canReceiveRequests", canReceiveRequests);
+    public void setCanReceiveRequests(final String playerUUID, final boolean canReceiveRequests) {
+        instance.getData().set("players." + playerUUID + ".options.canReceiveRequests", canReceiveRequests);
     }
 
-    public boolean canReceiveRequests(final String uuid) {
-        return instance.getData().get("players." + uuid + ".options.canReceiveRequests", true);
+    public boolean canReceiveRequests(final String playerUUID) {
+        return instance.getData().get("players." + playerUUID + ".options.canReceiveRequests", true);
     }
 
-    public void setHidden(final String uuid, final boolean state) {
-        instance.getData().set("players." + uuid + ".options.isHidden", state);
+    public void setHidden(final String playerUUID, final boolean state) {
+        instance.getData().set("players." + playerUUID + ".options.isHidden", state);
     }
 
-    public boolean isHidden(final String uuid) {
-        return instance.getData().get("players." + uuid + ".options.isHidden", false);
+    public boolean isHidden(final String playerUUID) {
+        return instance.getData().get("players." + playerUUID + ".options.isHidden", false);
     }
 
-    private void addFriendIndividual(final String uuid1, final String uuid2) {
-        final String path = "players." + uuid1 + ".friends";
+    private void addFriendIndividual(final String playerUUID, final String targetUUID) {
+        final String path = "players." + playerUUID + ".friends";
         List<String> friendsList = instance.getData().get(path, new ArrayList<>()); //Get their current friends list
-        friendsList.add(uuid2); //Put the new friend in their list
+        friendsList.add(targetUUID); //Put the new friend in their list
         instance.getData().set(path, friendsList); //Set the new friends list
-        setFriendAddedTime(uuid1, uuid2);
+        setFriendAddedTime(playerUUID, targetUUID);
     }
 
-    private void removeFriendIndividual(final String uuid1, final String uuid2) {
-        final String path = "players." + uuid1 + ".friends";
+    private void removeFriendIndividual(final String playerUUID, final String targetUUID) {
+        final String path = "players." + playerUUID + ".friends";
         List<String> friendsList = instance.getData().get(path, new ArrayList<>()); //Get their current friends list
-        friendsList.remove(uuid2); //Remove the friend from their friends list
+        friendsList.remove(targetUUID); //Remove the friend from their friends list
         instance.getData().set(path, friendsList); //Set the new friends list
     }
 

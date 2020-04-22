@@ -24,3 +24,8 @@
 - Added a few more methods to 'FriendsManager'
 - Added content to 'messages.yml'
 - Increased 'messages.yml' version
+
+1.0.4-ALPHA:
+- Completed '/friends cancel', '/friends accept', '/friends deny', '/friends list'
+- Added content to 'messages.yml' + increased its version
+- Added check to '/friends add' if the player has already sent a friend request

@@ -67,7 +67,7 @@ public class Utils {
     //This is the latest messages file version.
     //If the current messages file version installed by the user does not match this, then such is reported to the console.
     public int getLatestMessagesFileVersion() {
-        return 2;
+        return 3;
     }
 
     //This is the latest data file version.

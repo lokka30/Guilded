@@ -9,12 +9,31 @@ prefix: '&a&lGuilded:&7'
 #D
 #E
 #F
-friends-add-already: '%prefix% You are already friends with &r%target%&7.'
+friends-accept-accepted: '%prefix% &r%player%&7 accepted your friend request.'
+friends-accept-no-request: '%prefix% &r%target%&7 hasn''t sent you a friend request.'
+friends-accept-usage: '%prefix% Usage: &a/friends accept <target>'
+friends-accept-success: '%prefix% Accepted &r%target%&7''s friend request.'
+friends-add-already-added: '%prefix% You are already friends with &r%target%&7.'
+friends-add-already-requested: '%prefix% You have already sent a friend request to &r%target%&7.'
 friends-add-disabled-requests: '%prefix% &r%target%&7 doesn''t want to receive friend requests.'
 friends-add-ignored: '%prefix% &r%target%&7 is ignoring your friend requests.'
 friends-add-usage: '%prefix% Usage: &a/friends add <target>'
 friends-add-requested: '%prefix% &r%player%&7 sent you a friend request. To accept it, run &a/friends accept %player%&7, or you can deny it with &a/friends deny %player%&7.'
 friends-add-success: '%prefix% Sent &r%target%&7 a friend request.'
+friends-cancel-no-request: '%prefix% You haven''t sent a friend request to &r%target%&7.'
+friends-cancel-success: '%prefix% Cancelled your friend request to &r%target%&7.'
+friends-cancel-usage: '%prefix% Usage: &a/friends cancel <target>'
+friends-deny-denied: '%prefix% &r%player%&7 denied your friend request.'
+friends-deny-no-request: '%prefix% &r%target%&7 hasn''t sent you a friend request.'
+friends-deny-usage: '%prefix% Usage: &a/friends deny <target>'
+friends-deny-success: '%prefix% Denied &r%target%&7''s friend request.'
+friends-list-each: '&r &8&m->&r %player%&8 (%state%&8)'
+friends-list-each-state-hidden: '&7&oHidden'
+friends-list-each-state-offline: '&cOffline'
+friends-list-each-state-online: '&aOnline'
+friends-list-header: '%prefix% Your friends list:'
+friends-list-none: '%prefix% No friends to display. :('
+friends-list-usage: '%prefix% Usage: &a/friends list'
 friends-remove-not-a-friend: '%prefix% &r%target%&7 isn''t on your friends list.'
 friends-remove-usage: '%prefix% Usage: &a/friends remove <player>'
 friends-remove-success: '%prefix% Removed &r%target%&7 from your friends list.'
@@ -48,4 +67,4 @@ target-offline: '%prefix% &r%target%&7 is offline.'
 #Z
 
 # You shouldn't touch this unless you are updating the file to its respective version.
-file-version: 2
+file-version: 3

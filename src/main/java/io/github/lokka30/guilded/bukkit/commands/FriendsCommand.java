@@ -70,7 +70,7 @@ public class FriendsCommand implements CommandExecutor {
 
                                         //are the players already friends?
                                         if (instance.getFriendsManager().getFriendsList(senderUUID).contains(targetUUID)) {
-                                            player.sendMessage(instance.getUtils().prefixFromMessages("friends-add-already", "You are already friends with %target%")
+                                            player.sendMessage(instance.getUtils().prefixFromMessages("friends-add-already-added", "You are already friends with %target%")
                                                     .replaceAll("%target%", Objects.requireNonNull(target.getName())));
                                         } else {
                                             //has the target ignored the sender?
@@ -80,12 +80,17 @@ public class FriendsCommand implements CommandExecutor {
                                             } else {
                                                 //has the target disabled requests?
                                                 if (instance.getFriendsManager().canReceiveRequests(targetUUID)) {
-                                                    instance.getFriendsManager().sendFriendRequest(targetUUID, senderUUID);
-                                                    player.sendMessage(instance.getUtils().prefixFromMessages("friends-add-success", "Sent a friend request to %target%")
-                                                            .replaceAll("%target%", Objects.requireNonNull(target.getName())));
-                                                    if (target.isOnline()) {
-                                                        Objects.requireNonNull(target.getPlayer()).sendMessage(instance.getUtils().prefixFromMessages("friends-add-requested", "%player% sent you a friend request")
-                                                                .replaceAll("%player%", player.getName()));
+                                                    if (instance.getFriendsManager().hasAlreadySentFriendRequest(senderUUID, targetUUID)) {
+                                                        player.sendMessage(instance.getUtils().prefixFromMessages("friends-added-already-requested", "You have already sent a friend request to %target%")
+                                                                .replaceAll("%target%", target.getName()));
+                                                    } else {
+                                                        instance.getFriendsManager().sendFriendRequest(targetUUID, senderUUID);
+                                                        player.sendMessage(instance.getUtils().prefixFromMessages("friends-add-success", "Sent a friend request to %target%")
+                                                                .replaceAll("%target%", Objects.requireNonNull(target.getName())));
+                                                        if (target.isOnline()) {
+                                                            Objects.requireNonNull(target.getPlayer()).sendMessage(instance.getUtils().prefixFromMessages("friends-add-requested", "%player% sent you a friend request")
+                                                                    .replaceAll("%player%", player.getName()));
+                                                        }
                                                     }
                                                 } else {
                                                     player.sendMessage(instance.getUtils().prefixFromMessages("friends-add-disabled-requests", "%target% does not want to receive friend requests.")
@@ -158,13 +163,27 @@ public class FriendsCommand implements CommandExecutor {
                             break;
                         case "cancel":
                             if (player.hasPermission("guilded.friends.cancel")) {
-
-                                sender.sendMessage("cancel subcommand has not been implemented yet.");
-
                                 if (args.length == 2) {
-                                    //TODO
+                                    @SuppressWarnings("deprecation") final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
+
+                                    if (target.hasPlayedBefore() || target.isOnline()) { //Has the target joined before?
+                                        final String playerUUID = player.getUniqueId().toString();
+                                        final String targetUUID = target.getUniqueId().toString();
+
+                                        if (instance.getFriendsManager().getRequesters(targetUUID).contains(playerUUID)) {
+                                            instance.getFriendsManager().cancelFriendRequest(playerUUID, targetUUID);
+                                            player.sendMessage(instance.getUtils().prefixFromMessages("friends-cancel-success", "Cancelled your friend request to %target%")
+                                                    .replaceAll("%target%", Objects.requireNonNull(target.getName())));
+                                        } else {
+                                            player.sendMessage(instance.getUtils().prefixFromMessages("friends-cancel-no-request", "You haven't sent a friend request to %target%")
+                                                    .replaceAll("%target%", Objects.requireNonNull(target.getName())));
+                                        }
+                                    } else {
+                                        player.sendMessage(instance.getUtils().prefixFromMessages("target-never-joined", "%target% hasn't joined before")
+                                                .replaceAll("%target%", args[1]));
+                                    }
                                 } else {
-                                    //TODO Usage
+                                    player.sendMessage(instance.getUtils().prefixFromMessages("friends-cancel-usage", "Usage: /friends cancel <target>"));
                                 }
                             } else {
                                 player.sendMessage(instance.getUtils().prefixFromMessages("no-permission", "No permission"));
@@ -173,12 +192,33 @@ public class FriendsCommand implements CommandExecutor {
                         case "accept":
                             if (player.hasPermission("guilded.friends.accept")) {
 
-                                sender.sendMessage("accept subcommand has not been implemented yet.");
-
                                 if (args.length == 2) {
-                                    //TODO
+                                    @SuppressWarnings("deprecation") final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
+
+                                    if (target.hasPlayedBefore() || target.isOnline()) {
+                                        final String playerUUID = player.getUniqueId().toString();
+                                        final String targetUUID = target.getUniqueId().toString();
+
+                                        if (instance.getFriendsManager().getRequesters(playerUUID).contains(targetUUID)) {
+                                            instance.getFriendsManager().acceptFriendRequest(playerUUID, targetUUID);
+
+                                            player.sendMessage(instance.getUtils().prefixFromMessages("friends-accept-success", "Accepted %target%'s friend request")
+                                                    .replaceAll("%target%", Objects.requireNonNull(target.getName())));
+
+                                            if (target.isOnline()) {
+                                                Objects.requireNonNull(target.getPlayer()).sendMessage(instance.getUtils().prefixFromMessages("friends-accept-accepted", "%player% accepted your friend request")
+                                                        .replaceAll("%player%", player.getName()));
+                                            }
+                                        } else {
+                                            player.sendMessage(instance.getUtils().prefixFromMessages("friends-accept-no-request", "%target% hasn't sent you a friend request")
+                                                    .replaceAll("%target%", Objects.requireNonNull(target.getName())));
+                                        }
+                                    } else {
+                                        player.sendMessage(instance.getUtils().prefixFromMessages("target-never-joined", "%target% hasn't joined before")
+                                                .replaceAll("%target%", args[1]));
+                                    }
                                 } else {
-                                    //TODO Usage
+                                    player.sendMessage(instance.getUtils().prefixFromMessages("friends-accept-usage", "Usage: /friends accept <target>"));
                                 }
                             } else {
                                 player.sendMessage(instance.getUtils().prefixFromMessages("no-permission", "No permission"));
@@ -190,9 +230,32 @@ public class FriendsCommand implements CommandExecutor {
                                 sender.sendMessage("deny subcommand has not been implemented yet.");
 
                                 if (args.length == 2) {
-                                    //TODO
+                                    @SuppressWarnings("deprecation") final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
+
+                                    if (target.hasPlayedBefore() || target.isOnline()) {
+                                        final String playerUUID = player.getUniqueId().toString();
+                                        final String targetUUID = target.getUniqueId().toString();
+
+                                        if (instance.getFriendsManager().getRequesters(playerUUID).contains(targetUUID)) {
+                                            instance.getFriendsManager().cancelFriendRequest(targetUUID, playerUUID);
+
+                                            player.sendMessage(instance.getUtils().prefixFromMessages("friends-deny-success", "Denied %target%'s friend request")
+                                                    .replaceAll("%target%", Objects.requireNonNull(target.getName())));
+
+                                            if (target.isOnline()) {
+                                                Objects.requireNonNull(target.getPlayer()).sendMessage(instance.getUtils().prefixFromMessages("friends-deny-denied", "%player% denied your friend request")
+                                                        .replaceAll("%player%", player.getName()));
+                                            }
+                                        } else {
+                                            player.sendMessage(instance.getUtils().prefixFromMessages("friends-deny-no-request", "%target% hasn't sent you a friend request")
+                                                    .replaceAll("%target%", Objects.requireNonNull(target.getName())));
+                                        }
+                                    } else {
+                                        player.sendMessage(instance.getUtils().prefixFromMessages("target-never-joined", "%target% hasn't joined before")
+                                                .replaceAll("%target%", args[1]));
+                                    }
                                 } else {
-                                    //TODO Usage
+                                    player.sendMessage(instance.getUtils().prefixFromMessages("friends-deny-usage", "Usage: /friends deny <target>"));
                                 }
                             } else {
                                 player.sendMessage(instance.getUtils().prefixFromMessages("no-permission", "No permission"));
@@ -200,13 +263,42 @@ public class FriendsCommand implements CommandExecutor {
                             break;
                         case "list":
                             if (player.hasPermission("guilded.friends.list")) {
-
-                                sender.sendMessage("list subcommand has not been implemented yet.");
-
                                 if (args.length == 1) {
-                                    //TODO
+                                    final String playerUUID = player.getUniqueId().toString();
+
+                                    final List<String> friends = instance.getFriendsManager().getFriendsList(playerUUID);
+
+                                    if (friends.size() == 0) {
+                                        player.sendMessage(instance.getUtils().prefixFromMessages("friends-list-none", "No friends to display"));
+                                    } else {
+                                        player.sendMessage(instance.getUtils().prefixFromMessages("friends-list-header", "Your friends list:"));
+
+                                        for (String friend : friends) {
+                                            @SuppressWarnings("deprecation") final OfflinePlayer friendOP = Bukkit.getOfflinePlayer(friend);
+
+                                            if (friendOP.hasPlayedBefore() || friendOP.isOnline()) {
+                                                final String each = instance.getUtils().prefixFromMessages("friends-list-each", "= %player% (%state)");
+                                                final String state;
+
+                                                if (instance.getFriendsManager().isHidden(friend)) {
+                                                    state = instance.getUtils().prefixFromMessages("friends-list-each-state-hidden", "&7Hidden");
+                                                } else if (friendOP.isOnline()) {
+                                                    state = instance.getUtils().prefixFromMessages("friends-list-each-state-online", "&aOnline");
+                                                } else {
+                                                    state = instance.getUtils().prefixFromMessages("friends-list-each-state-offline", "&cOffline");
+                                                }
+
+                                                player.sendMessage(each
+                                                        .replaceAll("%player%", friendOP.getName())
+                                                        .replaceAll("%state%", state));
+                                            } else {
+                                                //Invalid friend, remove them from the list
+                                                instance.getFriendsManager().removeFriend(friend, playerUUID);
+                                            }
+                                        }
+                                    }
                                 } else {
-                                    //TODO Usage
+                                    player.sendMessage(instance.getUtils().prefixFromMessages("friends-list-usage", "Usage: /friends list"));
                                 }
                             } else {
                                 player.sendMessage(instance.getUtils().prefixFromMessages("no-permission", "No permission"));
