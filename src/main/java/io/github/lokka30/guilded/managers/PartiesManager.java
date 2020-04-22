@@ -1,4 +1,4 @@
-package io.github.lokka30.guilded.bukkit.managers;
+package io.github.lokka30.guilded.managers;
 
 import io.github.lokka30.guilded.bukkit.GuildedBukkit;
 

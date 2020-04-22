@@ -14,3 +14,7 @@
 - Added files 'settings.yml', 'messages.yml', 'data.json'
  - Added 'file-version'
  - Added 'prefix' to 'settings.yml'
+
+1.0.2-ALPHA:
+- Added 'Objects.requireNonNull' to command registration
+- Added most of the methods required in FriendsManager
