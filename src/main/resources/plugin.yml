@@ -32,9 +32,67 @@ permissions:
   guilded.guilds:
     description: Access to /guilds
     default: true
+
+
+
   guilded.friends:
     description: Access to /friends
     default: true
+
+  guilded.friends.add:
+    description: /friends add
+    default: true
+
+  guilded.friends.remove:
+    description: /friends remove
+    default: true
+
+  guilded.friends.requests:
+    description: /friends requests
+    default: true
+
+  guilded.friends.cancel:
+    description: /friends cancel
+    default: true
+
+  guilded.friends.accept:
+    description: /friends accept
+    default: true
+
+  guilded.friends.deny:
+    description: /friends deny
+    default: true
+
+  guilded.friends.list:
+    description: /friends list
+    default: true
+
+  guilded.friends.about:
+    description: /friends about
+    default: true
+
+  guilded.friends.ignore:
+    description: /friends about
+    default: true
+
+  guilded.friends.ignored:
+    description: /friends ignored
+    default: true
+
+  guilded.friends.options:
+    description: /friends options
+    default: true
+
+  guilded.friends.options.requests:
+    description: /friends options requests
+    default: true
+
+  guilded.friends.options.hidden:
+    description: /friends options hidden
+    default: true
+
+
+
   guilded.parties:
     description: Access to /parties
     default: true

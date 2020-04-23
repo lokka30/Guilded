@@ -29,3 +29,11 @@
 - Completed '/friends cancel', '/friends accept', '/friends deny', '/friends list'
 - Added content to 'messages.yml' + increased its version
 - Added check to '/friends add' if the player has already sent a friend request
+
+1.0.5-ALPHA:
+- Completed '/friends about', '/friends ignore', '/friends ignored', '/friends options'
+- Added massive subcommands message list
+- Added all permissions to 'plugin.yml'
+- Added permissions 'guilded.friends.options.requests', 'guilded.friends.options.hidden'
+- Added content to 'messages.yml' + increased its version to 4
+- Added content to 'settings.yml' + increased its version to 2

@@ -70,6 +70,10 @@ public class FriendsManager {
         instance.getData().set(path, ignoredRequesters);
     }
 
+    public List<String> getIgnoredList(final String playerUUID) {
+        return instance.getData().get("players." + playerUUID + ".friend-requests-ignored", new ArrayList<>());
+    }
+
     public boolean isIgnoringFriendRequests(final String targetUUID, final String requesterUUID) {
         //Is targetUUID ignoring requesterUUID's friend requests?
         return instance.getData().get("players." + targetUUID + ".friend-requests-ignored", new ArrayList<>()).contains(requesterUUID);

@@ -61,13 +61,13 @@ public class Utils {
     //This is the latest settings file version.
     //If the current settings file version installed by the user does not match this, then such is reported to the console.
     public int getLatestSettingsFileVersion() {
-        return 1;
+        return 2;
     }
 
     //This is the latest messages file version.
     //If the current messages file version installed by the user does not match this, then such is reported to the console.
     public int getLatestMessagesFileVersion() {
-        return 3;
+        return 4;
     }
 
     //This is the latest data file version.

@@ -1,7 +1,31 @@
 # Guilded | settings.yml
 
+friends:
+
+  about:
+
+    # Should the friend's online status be shown?
+    # If the player is 'hidden' then it will say 'hidden' regardless if they are online or offline.
+    show-online-state: true
+
+    # Should the time be shown of when the players added each other as friends?
+    # e.g. You became friends with Notch on 23/04/2020
+    show-time: true
+
+    # Should the friend's server be shown?
+    # The server won't be shown if the friend is in hidden mode
+    # e.g. Notch is in the server 'lobby'.
+    # The server will only be shown if this is installed on a BungeeCord server, not a Bukkit server.
+    show-server: true
+
+    # Should the friend's world be shown?
+    # The world won't be shown if the friend is in hidden mode
+    # e.g. Notch is in the world 'world_nether'.
+    # The world will only be shown if this is installed on a Bukkit server, not a BungeeCord server.
+    show-world: true
+
 # Should the plugin check for updates after it has enabled?
 use-update-checker: true
 
 # You shouldn't touch this unless you are updating the file to its respective version.
-file-version: 1
+file-version: 2
