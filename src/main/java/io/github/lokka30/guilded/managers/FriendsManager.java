@@ -1,10 +1,11 @@
 package io.github.lokka30.guilded.managers;
 
 import io.github.lokka30.guilded.bukkit.GuildedBukkit;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
-import org.bukkit.entity.Player;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -85,23 +86,15 @@ public class FriendsManager {
 
     public void setFriendAddedTime(final String targetUUID, final String playerUUID) {
         //playerUUID just added targetUUID as a friend.
-        Date date = new Date(System.currentTimeMillis());
-        instance.getData().set("players." + playerUUID + ".friends-history." + targetUUID, date);
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat(instance.getSettings().get("friends.about.date-format", "dd/MM/yyyy hh:mm"));
+        String dateStr = dateFormat.format(date);
+        instance.getData().set("players." + playerUUID + ".friends-history." + targetUUID, dateStr);
     }
 
     public String getFriendAddedTime(final String targetUUID, final String playerUUID) {
         //playerUUID wants to know when targetUUID was added to their friends list.
         return instance.getData().get("players." + playerUUID + ".friends-history." + targetUUID, "Unknown");
-    }
-
-    public String getFriendServer(final ProxiedPlayer player) {
-        //Access by Bungee only!
-        return player.getServer().getInfo().getName();
-    }
-
-    public String getFriendWorld(final Player player) {
-        //Access by Bukkit only!
-        return player.getWorld().getName();
     }
 
     public void setCanReceiveRequests(final String playerUUID, final boolean canReceiveRequests) {
@@ -126,6 +119,10 @@ public class FriendsManager {
         friendsList.add(targetUUID); //Put the new friend in their list
         instance.getData().set(path, friendsList); //Set the new friends list
         setFriendAddedTime(playerUUID, targetUUID);
+
+        if (getRequesters(playerUUID).contains(targetUUID)) {
+            cancelFriendRequest(playerUUID, targetUUID);
+        }
     }
 
     private void removeFriendIndividual(final String playerUUID, final String targetUUID) {

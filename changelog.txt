@@ -37,3 +37,19 @@
 - Added permissions 'guilded.friends.options.requests', 'guilded.friends.options.hidden'
 - Added content to 'messages.yml' + increased its version to 4
 - Added content to 'settings.yml' + increased its version to 2
+
+1.0.6-ALPHA:
+- Changes to 'messages.yml' (now version 5) and 'settings.yml' (now version 3)
+- Fixed '/friends add' sending the friend request from the wrong player
+- Fixed '/friends requests' internal error (telling bukkit that it is offline player from name rather than uuid string)
+- Fixed incorrect message path in 'target hasnt joined' in '/friends add'
+- Fixed incorrect message path in 'already sent a request' in '/friends add'
+- Fixed incorrect setting of time when friends are added. Date is now formatted too.
+- Removed unused methods 'getFriendServer' and 'getFriendWorld' in 'FriendsManager'
+- Fixed missing '%' character in 'friends-about-online-state' message
+- Added customisable date format to settings
+- Fixed friend request not being removed after it was accepted
+- Removed 'options subcommand not implemented' message
+- Fixed missing switch break in '/friends ignored'
+- Fixed incomplete message in 'friends-ignored-header
+- Small grammar changes to messages.'

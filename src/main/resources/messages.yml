@@ -11,8 +11,8 @@ prefix: '&a&lGuilded:&7'
 #F
 friends-about-header: '%prefix% Information about your friend &r%target%&7:'
 friends-about-not-your-friend: '%prefix% &r%target%&7 isn''t on your friends list.'
-friends-about-online-state: '&8 - &7Online state: &8(%state&8)&7.'
-friends-about-online-state-hidden: '&7Hidden'
+friends-about-online-state: '&8 - &7Online state: &8(%state%&8)&7.'
+friends-about-online-state-hidden: '&7&oHidden'
 friends-about-online-state-offline: '&cOffline'
 friends-about-online-state-online: '&aOnline'
 friends-about-server: '&8 - &7They are in the server ''&a%server&7''.'
@@ -43,10 +43,10 @@ friends-ignore-stop: '%prefix% Stopped ignoring &r%target%&7''s friend requests.
 friends-ignore-usage: '%prefix% Usage: &a/friends ignore <target>'
 friends-ignored-each: '&r &8&m->&r %player%'
 friends-ignored-each-invalid: '&r &8&m->&7 (Stopped ignoring uuid ''&a%uuid%&7'', player hasn''t joined the server)'
-friends-ignored-header: '%prefix% You are ignoring the following players'
-friends-ignored-none: '%prefix% You are not ignoring anyone''s friend requests.'
+friends-ignored-header: '%prefix% You are ignoring the friend requests from the following players:'
+friends-ignored-none: '%prefix% You aren''t ignoring anyone''s friend requests.'
 friends-ignored-usage: '%prefix% Usage: &a/friends ignored'
-friends-list-each: '&r &8&m->&r %player%&8 (%state%&8)'
+friends-list-each: '&r &8&m->&r %player%&8 - &7State: &8(%state%&8)'
 friends-list-each-state-hidden: '&7&oHidden'
 friends-list-each-state-offline: '&cOffline'
 friends-list-each-state-online: '&aOnline'
@@ -106,4 +106,4 @@ target-offline: '%prefix% &r%target%&7 is offline.'
 #Z
 
 # You shouldn't touch this unless you are updating the file to its respective version.
-file-version: 4
+file-version: 5

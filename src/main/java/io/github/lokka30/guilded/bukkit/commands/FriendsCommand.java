@@ -16,35 +16,6 @@ import java.util.UUID;
 
 public class FriendsCommand implements CommandExecutor {
 
-    /*
-    /friends add <player>
-        - Send a friend request
-    /friends requests
-        - Shows all of your friend requests
-    /friends cancel <player>
-        - Cancel a friend request
-    /friends remove <player>
-        - Remove a player from your friends list
-    /friends accept <player>
-        - Accept a friend request
-    /friends deny <player>
-        - Deny a friend request
-    /friends ignore <player>
-        - Ignore a player from their friend requests
-    /friends ignored
-        - Shows you a list of all the players you are ignoring
-    /friends list
-        - List all of your friends and what server/world they are in
-    /friends about <player>
-        - Tells you information about the friendship with that player.
-        - 'You became friends with Notch on 22 April 2020'
-        - 'Notch is on the server Survival'
-    /friends options requests <on/off>
-    /friends options hidden <on/off>
-        - Doesn't tell your friend if you are online or offline
-            - If you aren't hidden, such info is shown on join/quit and also /friends about
-        - Doesn't show your current server in /friends about
-     */
     private GuildedBukkit instance;
 
     public FriendsCommand(final GuildedBukkit instance) {
@@ -64,7 +35,7 @@ public class FriendsCommand implements CommandExecutor {
                                 if (args.length == 2) {
                                     @SuppressWarnings("deprecation") final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
                                     if (!target.hasPlayedBefore() && !target.isOnline()) {
-                                        player.sendMessage(instance.getUtils().prefixFromMessages("target-never-played", "%target% hasn't joined before.")
+                                        player.sendMessage(instance.getUtils().prefixFromMessages("target-never-joined", "%target% hasn't joined before.")
                                                 .replaceAll("%target%", args[1]));
                                     } else {
                                         final String senderUUID = player.getUniqueId().toString();
@@ -83,10 +54,10 @@ public class FriendsCommand implements CommandExecutor {
                                                 //has the target disabled requests?
                                                 if (instance.getFriendsManager().canReceiveRequests(targetUUID)) {
                                                     if (instance.getFriendsManager().hasAlreadySentFriendRequest(senderUUID, targetUUID)) {
-                                                        player.sendMessage(instance.getUtils().prefixFromMessages("friends-added-already-requested", "You have already sent a friend request to %target%")
+                                                        player.sendMessage(instance.getUtils().prefixFromMessages("friends-add-already-requested", "You have already sent a friend request to %target%")
                                                                 .replaceAll("%target%", Objects.requireNonNull(target.getName())));
                                                     } else {
-                                                        instance.getFriendsManager().sendFriendRequest(targetUUID, senderUUID);
+                                                        instance.getFriendsManager().sendFriendRequest(senderUUID, targetUUID);
                                                         player.sendMessage(instance.getUtils().prefixFromMessages("friends-add-success", "Sent a friend request to %target%")
                                                                 .replaceAll("%target%", Objects.requireNonNull(target.getName())));
                                                         if (target.isOnline()) {
@@ -276,7 +247,7 @@ public class FriendsCommand implements CommandExecutor {
                                         player.sendMessage(instance.getUtils().prefixFromMessages("friends-list-header", "Your friends list:"));
 
                                         for (String friend : friends) {
-                                            @SuppressWarnings("deprecation") final OfflinePlayer friendOP = Bukkit.getOfflinePlayer(friend);
+                                            final OfflinePlayer friendOP = Bukkit.getOfflinePlayer(UUID.fromString(friend));
 
                                             if (friendOP.hasPlayedBefore() || friendOP.isOnline()) {
                                                 final String each = instance.getUtils().prefixFromMessages("friends-list-each", "= %player% (%state)");
@@ -331,7 +302,7 @@ public class FriendsCommand implements CommandExecutor {
                                                     state = instance.getUtils().prefixFromMessages("friends-about-online-state-offline", "&cOffline");
                                                 }
 
-                                                player.sendMessage(instance.getUtils().prefixFromMessages("friends-about-online-state", "Online state: (%state)")
+                                                player.sendMessage(instance.getUtils().prefixFromMessages("friends-about-online-state", "Online state: (%state%)")
                                                         .replaceAll("%state%", state));
                                             }
 
@@ -420,20 +391,11 @@ public class FriendsCommand implements CommandExecutor {
                             } else {
                                 player.sendMessage(instance.getUtils().prefixFromMessages("no-permission", "No permission"));
                             }
-/*
-    /friends options requests <on/off>
-    /friends options hidden <on/off>
-        - Doesn't tell your friend if you are online or offline
-            - If you aren't hidden, such info is shown on join/quit and also /friends about
-        - Doesn't show your current server in /friends about
-*/
+                            break;
                         case "options":
                             final String playerUUID = player.getUniqueId().toString();
 
                             if (player.hasPermission("guilded.friends.options")) {
-
-                                sender.sendMessage("options subcommand has not been implemented yet.");
-
                                 if (args.length == 3) {
                                     switch (args[1].toLowerCase()) {
                                         case "requests":
