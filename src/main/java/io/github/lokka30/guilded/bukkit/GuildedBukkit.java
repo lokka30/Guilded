@@ -2,10 +2,10 @@ package io.github.lokka30.guilded.bukkit;
 
 import de.leonhard.storage.LightningBuilder;
 import de.leonhard.storage.internal.FlatFile;
-import io.github.lokka30.guilded.bukkit.commands.FriendsCommand;
-import io.github.lokka30.guilded.bukkit.commands.GuildedCommand;
-import io.github.lokka30.guilded.bukkit.commands.GuildsCommand;
-import io.github.lokka30.guilded.bukkit.commands.PartiesCommand;
+import io.github.lokka30.guilded.bukkit.commands.BukkitFriendsCommand;
+import io.github.lokka30.guilded.bukkit.commands.BukkitGuildedCommand;
+import io.github.lokka30.guilded.bukkit.commands.BukkitGuildsCommand;
+import io.github.lokka30.guilded.bukkit.commands.BukkitPartiesCommand;
 import io.github.lokka30.guilded.bukkit.listeners.JoinListener;
 import io.github.lokka30.guilded.bukkit.listeners.QuitListener;
 import io.github.lokka30.guilded.bukkit.utils.Utils;
@@ -138,10 +138,10 @@ public class GuildedBukkit extends JavaPlugin {
     }
 
     private void registerCommands() {
-        Objects.requireNonNull(getCommand("friends")).setExecutor(new FriendsCommand(this));
-        Objects.requireNonNull(getCommand("guilded")).setExecutor(new GuildedCommand(this));
-        Objects.requireNonNull(getCommand("guilds")).setExecutor(new GuildsCommand(this));
-        Objects.requireNonNull(getCommand("parties")).setExecutor(new PartiesCommand(this));
+        Objects.requireNonNull(getCommand("friends")).setExecutor(new BukkitFriendsCommand(this));
+        Objects.requireNonNull(getCommand("guilded")).setExecutor(new BukkitGuildedCommand(this));
+        Objects.requireNonNull(getCommand("guilds")).setExecutor(new BukkitGuildsCommand(this));
+        Objects.requireNonNull(getCommand("parties")).setExecutor(new BukkitPartiesCommand(this));
     }
 
     private void checkForUpdates() {

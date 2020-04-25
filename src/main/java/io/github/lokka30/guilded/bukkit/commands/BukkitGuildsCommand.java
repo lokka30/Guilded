@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-public class GuildsCommand implements CommandExecutor {
+public class BukkitGuildsCommand implements CommandExecutor {
 
     /*
     Commands
@@ -34,7 +34,7 @@ public class GuildsCommand implements CommandExecutor {
 
     private GuildedBukkit instance;
 
-    public GuildsCommand(final GuildedBukkit instance) {
+    public BukkitGuildsCommand(final GuildedBukkit instance) {
         this.instance = instance;
     }
 

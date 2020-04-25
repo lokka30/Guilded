@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class FriendsCommand implements CommandExecutor {
+public class BukkitFriendsCommand implements CommandExecutor {
 
     private GuildedBukkit instance;
 
-    public FriendsCommand(final GuildedBukkit instance) {
+    public BukkitFriendsCommand(final GuildedBukkit instance) {
         this.instance = instance;
     }
 

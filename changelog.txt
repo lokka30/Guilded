@@ -53,3 +53,7 @@
 - Fixed missing switch break in '/friends ignored'
 - Fixed incomplete message in 'friends-ignored-header
 - Small grammar changes to messages.'
+
+1.0.7-ALPHA:
+- completed Bukkit and Bungee '/guilded' command.
+- Started work on the Bungee side.
